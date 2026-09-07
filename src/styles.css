@@ -1,0 +1,121 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Raasta AI design system.
+ * One typeface (Plus Jakarta Sans) + Noto Nastaliq Urdu for Urdu script.
+ * Gold is reserved for citations. Terracotta is reserved for low-confidence.
+ * Never hardcode raw colors in components — use these tokens.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-body);
+  --font-urdu: "Noto Nastaliq Urdu", serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--background);
+  --color-ink: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-tint: var(--primary-tint);
+
+  --color-secondary: var(--primary-tint);
+  --color-secondary-foreground: var(--primary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--primary-tint);
+  --color-accent-foreground: var(--primary);
+
+  --color-source: var(--source-accent);
+  --color-source-tint: var(--source-tint);
+  --color-warning: var(--warning);
+  --color-warning-tint: var(--warning-tint);
+  --color-destructive: var(--warning);
+  --color-destructive-foreground: var(--primary-foreground);
+
+  --color-border: var(--border);
+  --color-line: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --color-sidebar: var(--surface);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--primary-tint);
+  --color-sidebar-accent-foreground: var(--primary);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--primary);
+
+  --shadow-lift: 0 12px 28px -18px rgb(25 29 22 / 0.35);
+}
+
+:root {
+  --radius: 1rem;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --primary: #125e40;
+  --primary-hover: #0b4530;
+  --primary-tint: #e9f0ea;
+  --primary-foreground: #ffffff;
+  --background: #f4f2e8;
+  --surface: #ffffff;
+  --foreground: #191d16;
+  --muted: #595543;
+  --border: #e6e2d4;
+  --source-accent: #a9823c;
+  --source-tint: #faf5e9;
+  --warning: #c1613f;
+  --warning-tint: #fbf0ea;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  [dir="rtl"] .urdu,
+  .urdu {
+    font-family: "Noto Nastaliq Urdu", serif;
+    line-height: 2.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@utility route-dots {
+  border-left: 2px dotted color-mix(in oklab, var(--primary) 40%, transparent);
+}
