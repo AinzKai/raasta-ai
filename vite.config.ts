@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv, mergeConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import { nitro } from "nitro/vite";
+import netlify from "@netlify/vite-plugin-tanstack-start";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
@@ -70,18 +70,7 @@ export default defineConfig(({ mode }) => {
           },
           server: { entry: "server" },
         }),
-        nitro({
-          defaultPreset: "cloudflare-module",
-          // `cron` is read by Nitro at runtime but missing from the plugin's published types.
-          ...({
-            cron: {
-              "0 3 * * *": {
-                handler: "/api/cron/check-sources",
-                description: "Daily source monitoring run",
-              },
-            },
-          } as Record<string, unknown>),
-        }),
+        netlify(),
         viteReact(),
       ],
     },
